@@ -51,7 +51,7 @@ jobs:
           echo ::set-output name=gover::"GO_VERSION=${{ secrets.GO_VERSION }}"
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
