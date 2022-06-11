@@ -1,4 +1,6 @@
-FROM golang:1.16-buster
+ARG GO_VERSION=1.18
+
+FROM golang:${GO_VERSION}-buster
 
 # Install deps
 RUN apt-get update && apt-get install -y -qq \
