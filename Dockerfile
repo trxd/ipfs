@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y -qq \
   fuse \
   git
 
-ENV SRC_DIR /go-ipfs
+ENV SRC_DIR /kubo
 
 WORKDIR $SRC_DIR
-RUN git clone https://github.com/ipfs/go-ipfs.git . \
+RUN git clone https://github.com/ipfs/kubo.git . \
   && git fetch --tags \
   && git checkout `git describe --abbrev=0 --tags`
 
@@ -48,7 +48,7 @@ FROM busybox:1.31.1-glibc
 LABEL maintainer="Steven Allen <steven@stebalien.com>"
 
 # Get the ipfs binary, entrypoint script, and TLS CAs from the build container.
-ENV SRC_DIR /go-ipfs
+ENV SRC_DIR /kubo
 COPY --from=0 $SRC_DIR/cmd/ipfs/ipfs /usr/local/bin/ipfs
 COPY --from=0 /tmp/su-exec/su-exec-static /sbin/su-exec
 COPY --from=0 /tmp/tini /sbin/tini
